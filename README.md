@@ -27,7 +27,7 @@ Een task wordt op een thread op een processor uitgevoerd.
 Extra:
 Een action is een delegate of een anonymous funciton:
 
-```cs
+```
         //Login!
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -41,7 +41,7 @@ Nu zie je natuurlijk niet of er iets gebeurt!!
 > schedule iets dat moet gebeuren eens de async operatie completed is.
 Een task geeft een task terug, en zo kan je een continuation schedulen:
 
-```cs
+```
 private void Button_Click(object sender, RoutedEventArgs e)
         {
             btLogin.IsEnabled = false;
@@ -62,7 +62,8 @@ private void Button_Click(object sender, RoutedEventArgs e)
 Als je dit runt, krijg je een foutmelding, want je voert een UI operatie uit op de niet UI thread.
 
 
-```cs
+```
+
 
   private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -83,7 +84,7 @@ Als je dit runt, krijg je een foutmelding, want je voert een UI operatie uit op 
 ```
 Als er binnen een task.run een exception voorkomt, dan moet je deze opvangen.
 
-```cs
+```
 
 private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -122,7 +123,7 @@ Zo hoeven we niet met dispatcher werken.
 Task.configureAwait => zo kunnen we configureren waar we de continuation doen (dus op de UI thread, via een true configuratie).
 .getAwaiter => de configureAwait geeft een awaiter object, en met getawaiter hebben we de mogelijkheid om te weten te komen of een task completed is.
 
-```cs
+```
 private void Button_Click(object sender, RoutedEventArgs e)
         {
             btLogin.IsEnabled = false;
@@ -171,7 +172,7 @@ We kunnen dit realiseren met async en await.
 
 1.	Eerst markeren we de methode async. Let op met het markeren van de methode als async wordt de methode nog niet asynchroon uitgevoerd!
 
-```cs
+```
 
 private async void Button_Click(object sender, RoutedEventArgs e)
 {
@@ -181,7 +182,7 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 ```
 Dus om onze taak asynchroon uit te voeren, werken we opnieuw met een task:
 
-```cs
+```
 
 private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -198,7 +199,7 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 Als je deze bovenstaande code runt, merk je dat de content van de knop onmiddellijk veranderd is, want task.run loopt asynchroon, dus de volgende codeblok wordt direct uitgevoerd.
 Waar we in voorgaande voorbeelden met continuewith gewerkt hebben, kunnen we nu een nieuw keywoord introduceren,namelijk await, wat aangeeft dat alle code na de task pas uitgevoerd wordt (dus een continuation) wanneer de taak compleet is.
 
-```cs
+```
 
 private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -219,7 +220,7 @@ Het grote verschil met continueWith is ook dat toen de code niet in de UI thread
 
 Wanneer we nu een resultaat van onze asynchrone taak willen gebruiken, het await keywoord wacht op complete, en vangt het resultaat op. Dus kunnen we onze code veranderen naar:
 
-```cs
+```
 
 private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -239,7 +240,7 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 
 Normaal gaan we onze async operatie in een aparte methode stoppen. Meestal wordt er ook aan de methode naam het “Async” woordje gehangen:
 
-```cs
+```
 
   private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -264,7 +265,7 @@ Normaal gaan we onze async operatie in een aparte methode stoppen. Meestal wordt
 ```
 Throw exception:
 
-```cs
+```
 
 private async void LoginAsync()
         {
@@ -285,7 +286,7 @@ private async void LoginAsync()
 We zien dat de applicatie crasht.
 Als je een exceptie throwt , dan moet je dit met try catch opvangen:
 
-```cs
+```
 
 private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -320,7 +321,7 @@ private void Button_Click(object sender, RoutedEventArgs e)
 Nu zien we dat de applicatie nog steeds crasht.
 Oplossing 1. We gaan de async methode in een try catch steken:
 
-```cs
+```
 
 private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -363,7 +364,7 @@ Nu komen we in de catch van de async method uit. Maar de applicatie crasht niet 
 
 Wat als we de UnAuthorizedException bovenaan de methode plaatsen:
 
-```cs
+```
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -407,7 +408,7 @@ Wat als we de UnAuthorizedException bovenaan de methode plaatsen:
 We zien dat de applicatie opnieuw crasht, alhoewel we zouden verwachten dat de try catch van de buttonclick nu zou moeten werken, dit is dus niet het geval.
 Wanneer je een async methode markeert en een exception throwt, dan moet de compiler de exceptie op een task zetten, daarom veranderen we de void methode van LoginAsync naar Task:
 
-```cs
+```
 
   private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -453,7 +454,7 @@ En nu werkt alles weer.
 Je hoeft zelfs niets meer in een eerste try catch te zetten, want we komen niet in die eerste catch
 Dus wie onze LoginAsync methode aanroept moet  ervoor zorgen dat hij weet of de methode succesvol is, dit doen we met async / await:
 
-```cs
+```
 
 private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -493,7 +494,7 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 
 Als je dit uitvoert crasht de applicatie opnieuw, wat eigenlijk goed is, want we throwen een exception, maar nu kan je deze wel opvangen!
 
-```cs
+```
 
   private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -540,7 +541,7 @@ Als je dit uitvoert crasht de applicatie opnieuw, wat eigenlijk goed is, want we
 We willen nu in onze async methode geen UI handling doen, maar dit in de klik methode.
 Dit geeft een fout:
 
-```cs
+```
 
 private async Task LoginAsync()
         {
@@ -570,7 +571,7 @@ private async Task LoginAsync()
 Want we returnen een task, dit is makkelijk op te lossen door :
 
 
-```cs
+```
 
 private async Task<string> LoginAsync()
         {
@@ -599,7 +600,7 @@ private async Task<string> LoginAsync()
 
 Omdat we in deze methode het await keywoord gebruiken, kunnen we het resultaat van de task opvangen:
 
-```cs
+```
 
 private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -619,7 +620,7 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 
 Het resultaat = 
 
-```cs
+```
 
 private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -664,7 +665,7 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 ```
 Speel met waar je de exception throwt:
 
-```cs
+```
 
 private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -712,7 +713,7 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 Nu maken we onze UI compleet:
 
 
-```cs
+```
 
 private async void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -738,7 +739,7 @@ private async void Button_Click(object sender, RoutedEventArgs e)
 We gaan bijvoorbeeld een quote van de dag ophalen van een RET API: http://quotes.rest/qod.json.
 Dit kunnen we doen via de HttpClient : 
 
-```cs
+```
 
 public IActionResult About()
         {
@@ -755,7 +756,7 @@ public IActionResult About()
 
 De GetAsync methode geeft aan dat men de quote asynchroon gaat ophalen, daarom gaan we op het resultaat wachten vooraleer we verder gaan:
 
-```cs
+```
 
 public async IActionResult About()
         {
@@ -771,7 +772,7 @@ public async IActionResult About()
 
 Als je het await keywoord gebruikt, dan moet je de methode natuurlijk markeren als async, en dan retourneren we natuurlijk een task:
 
-```cs
+```
 
 public async Task<ActionResult> About()
         {
@@ -787,7 +788,7 @@ public async Task<ActionResult> About()
 
 Het lezen van het resultaat is ook een asynchrone taak:
 
-```cs
+```
 
 public async Task<ActionResult> About()
         {
@@ -804,7 +805,7 @@ public async Task<ActionResult> About()
 
 We kunnen ons json object makkelijk uitlezen door:
 
-```cs
+```
 
 var client = new HttpClient();
             var msg = await  client.GetAsync("http://quotes.rest/qod.json");

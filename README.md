@@ -827,6 +827,15 @@ var client = new HttpClient();
 2. Promises
 3. Async / Await
 
+
+### Intro
+
+De eerste oplossing kwam in de vorm van geneste functies als callbacks. Deze oplossing leidde tot iets genaamd callback hell.
+
+Toen kwamen er "Promises". Dit patroon maakte de code een stuk gemakkelijker om te lezen, maar het stond ver af van het Do not Repeat Yourself (DRY) -principe. Er waren nog steeds te veel gevallen waarin je dezelfde stukjes code moest herhalen om de applicatie goed te beheren. 
+
+Nu zijn er asynchrone / await-statements, en maakt asynchrone code eindelijk in JavaScript net zo gemakkelijk te lezen en te schrijven als elk ander stuk code.
+
 ```
 
 <!DOCTYPE html>

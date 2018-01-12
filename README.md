@@ -836,6 +836,21 @@ Toen kwamen er "Promises". Dit patroon maakte de code een stuk gemakkelijker om 
 
 Nu zijn er asynchrone / await-statements, en maakt asynchrone code eindelijk in JavaScript net zo gemakkelijk te lezen en te schrijven als elk ander stuk code.
 
+### Async / Await
+
+
+Promises maakten de weg vrij voor een van de coolste verbeteringen in JavaScript. ECMAScript 2017 bracht Promises in JavaScript in de vorm van asynchrone en await-statements.
+
+Ze stellen ons in staat om op Promise gebaseerde code te schrijven alsof deze synchroon is, maar zonder de main thread te blokkeren.
+
+Await is enkel toegestaan binnen een async functie!
+
+Async-functies zijn de volgende logische stap in de evolutie van asynchrone programmeren in JavaScript. Ze zullen de code veel cleaner en gemakkelijker in onderhoud maken. Als u een functie als async declareert, zorgt u ervoor dat deze altijd een belofte retourneert, zodat u zich daar geen zorgen meer over hoeft te maken.
+
+- De code is veel cleaner.
+- Foutafhandeling is veel eenvoudiger en het is afhankelijk van try / catch, net als in een andere synchrone code.
+- Foutopsporing is veel eenvoudiger. Je kan door de wachtende code stappen alsof het synchrone calls zijn.
+
 ```
 
 <!DOCTYPE html>

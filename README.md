@@ -826,7 +826,9 @@ var client = new HttpClient();
 1. Callback Hell
 2. Promises
 3. Async / Await
-´´´
+
+```
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -875,7 +877,7 @@ var client = new HttpClient();
 
 </html>
 
-´´´
+```
 
 ### The QuoteService
 

@@ -819,3 +819,90 @@ var client = new HttpClient();
             return View();
 
 ```
+
+
+## Asynchroon programmeren in JavaScript
+
+1. Callback Hell
+2. Promises
+3. Async / Await
+´´´
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="QuoteService.js"></script>
+    <script>
+        var quoteService = new QuoteService();
+        $(function () {
+                    /*
+                    Get async call to quote of the day
+                    http://quotes.rest/qod.json
+                    */
+                        $(".callback").click(function (event) {
+                        var result = quoteService.QuoteOfTheDay(function (result) {
+                            $("h2").text(result);
+                        });
+                        });
+                        
+                        $(".promise").click(function (event) {
+                            var result = quoteService.QuoteOfTheDayPromise().then(function(data){
+                                console.log(data);
+                            });
+
+                        });
+            
+            
+                          $(".AsyncAwait").click(async function (event) {
+                            var result = await quoteService.QuoteOfTheDayPromise();
+                            console.log("async await");
+                            console.log(result);
+                            });
+
+                       
+                    });
+    </script>
+</head>
+
+<body>
+    <h2></h2> <a class="callback" href="#">Get Quote</a>
+     <a class="promise" href="#">Get Quote with promise</a> 
+     <a class="promise" href="#">Get Quote with promise</a> 
+     <a class="AsyncAwait" href="#">Get Quote with AsycnAwait</a> 
+    </body>
+
+</html>
+
+´´´
+
+### The QuoteService
+
+```
+
+function QuoteService() {
+    
+    this.QuoteOfTheDay = function(callback) {
+        $.get(" http://quotes.rest/qod.json", function (data, status) {
+        
+            if(data.success){
+            callback(data.contents.quotes[0].quote);
+            }
+        });
+    }
+    //function(fullfill,reject)
+    this.QuoteOfTheDayPromise = function(){
+        return new Promise(function(resolve,error){
+            $.get(" http://quotes.rest/qod.json", function (data, status) {
+        
+            if(data.success){
+                console.log("promise gelukt");
+                resolve(data.contents.quotes[0].quote);
+            }
+            });
+        });
+    }
+ }
+ 
+```

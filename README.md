@@ -1,7 +1,7 @@
 # Asynchroon Programmeren
 
 Het verbeteren van responsiveness en performantieproblemen kan verkregen worden door asynchroon programmeren. Vroeger was dit complex om te coderen, maar vanaf .NET 4.5 is dit zeer makkelijk geworden.
-Asynchroon programmere is essentieel voor tijdrovende activiteiten: bijvoorbeeld:
+Asynchroon programmeren is essentieel voor tijdrovende activiteiten!
  
 
 De async and await keywoorden in C# zijn het hart van async programmeren. Het await keywoord duidt aan dat een stuk code asynchroon moet wachten op een ander stuk code. Met het asyc keywoord kan je methoden markeren als task gebaseerde asynchrone methoden.

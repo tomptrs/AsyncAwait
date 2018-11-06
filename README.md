@@ -849,7 +849,7 @@ Async-functies zijn de volgende logische stap in de evolutie van asynchrone prog
 - Foutafhandeling is veel eenvoudiger en het is afhankelijk van try / catch, net als in een andere synchrone code.
 - Foutopsporing is veel eenvoudiger. Je kan door de wachtende code stappen alsof het synchrone calls zijn.
 
-```
+```javascript
 
 <!DOCTYPE html>
 <html lang="en">
@@ -903,7 +903,7 @@ Async-functies zijn de volgende logische stap in de evolutie van asynchrone prog
 
 ### The QuoteService
 
-```
+```javascript
 
 function QuoteService() {
     

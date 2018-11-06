@@ -27,7 +27,7 @@ Een task wordt op een thread op een processor uitgevoerd.
 Extra:
 Een action is een delegate of een anonymous funciton:
 
-```
+```csharp
         //Login!
         private void Button_Click(object sender, RoutedEventArgs e)
         {

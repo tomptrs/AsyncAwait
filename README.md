@@ -5,10 +5,10 @@ Asynchroon programmeren is essentieel voor tijdrovende activiteiten!
  
 
 De async and await keywoorden in C# zijn het hart van async programmeren. Het await keywoord duidt aan dat een stuk code asynchroon moet wachten op een ander stuk code. Met het asyc keywoord kan je methoden markeren als task gebaseerde asynchrone methoden.
-Het concept is .net heet het task based async pattern. Er bestaat namelijk een type Task, dan je nodig hebt om aynchroon te programmeren.
+Het concept is .net heet : "task based async pattern". Er bestaat namelijk een type Task, dan je nodig hebt om aynchroon te programmeren.
  
 
-Waarom tasks? Dit is eigenlijk gewoon een evolutie, want er bestonden reeds threads, anync delegates, background workers. Maar met tasks hebben we de mogelijkheid om een task te onderbreken, om makkelijk met exception handling te werken…
+Waarom tasks? Dit is eigenlijk gewoon een evolutie, want er bestonden reeds threads, async delegates, background workers. Maar met tasks hebben we de mogelijkheid om een task te onderbreken, om makkelijk met exception handling te werken…
 
 
 
